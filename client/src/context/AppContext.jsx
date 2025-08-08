@@ -9,7 +9,7 @@ export const AppContext = createContext();
 // Fix: Capitalize the component name (React components must start with uppercase)
 export const AppContextProvider = ({ children }) => {
 
-    const currency = import.meta.VITE_CURRENCY;
+    const currency = import.meta.env.VITE_CURRENCY;
 
     const navigate = useNavigate()
     const [user, setUser] = useState(null)

@@ -71,7 +71,7 @@ const Cart = () => {
                                 </div>
                             </div>
                         </div>
-                        <p className="text-center">{currency}₹{product.offerPrice * product.quantity}</p>
+                        <p className="text-center">{currency}{product.offerPrice * product.quantity}</p>
                         <button
                             onClick={()=> removeFromCart(product._id)} 
                             className="cursor-pointer mx-auto">
@@ -81,7 +81,7 @@ const Cart = () => {
                     </div>)
                 )}
 
-                <button className="group cursor-pointer flex items-center mt-8 gap-2 text-primary font-medium">
+                <button onClick={() => navigate("/products")} className="group cursor-pointer flex items-center mt-8 gap-2 text-primary font-medium">
                     <img className='group-hover:-translate-x-1 transition '
                     src={assets.arrow_right_icon_colored} alt="arrow" />
                     Continue Shopping
@@ -130,17 +130,17 @@ const Cart = () => {
 
                 <div className="text-gray-500 mt-4 space-y-2">
                     <p className="flex justify-between">
-                        <span>Price</span><span>{currency}₹{getCartAmount}</span>
+                        <span>Price</span><span>{currency}{getCartAmount}</span>
                     </p>
                     <p className="flex justify-between">
                         <span>Shipping Fee</span><span className="text-green-600">Free</span>
                     </p>
                     <p className="flex justify-between">
-                        <span>Tax (2%)</span><span>{currency}₹{getCartAmount() * 2/100}</span>
+                        <span>Tax (2%)</span><span>{currency}{getCartAmount() * 2/100}</span>
                     </p>
                     <p className="flex justify-between text-lg font-medium mt-3">
                         <span>Total Amount:</span><span>
-                            {currency}₹{getCartAmount() + getCartAmount() * 2/100}
+                            {currency}{getCartAmount() + getCartAmount() * 2/100}
                         </span>
                     </p>
                 </div>
