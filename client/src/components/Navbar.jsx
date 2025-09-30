@@ -36,9 +36,14 @@ const Navbar = () => {
 
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-8">
+                <button onClick={() => navigate("/seller")}
+                className="border border-gray-300 px-3 py-1 rounded-full text-xs cursor-pointer opacity-80">
+                    Seller Dashboard
+                </button>
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/products'>All Product</NavLink>
                 <NavLink to='/contact'>Contact</NavLink>
+                
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
                     {/* onChange={(e) => setSearchQuery(e.target.value)} */}
@@ -84,6 +89,10 @@ const Navbar = () => {
             {/* Mobile Menu */}
             { open && (
             <div className="flex z-50 absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden">
+                <button onClick={() => navigate("/seller")}
+                className="border border-gray-300 px-3 py-1 rounded-full text-xs cursor-pointer opacity-80">
+                    Seller Dashboard
+                </button>
                 <NavLink className="block" to='/' onClick={()=> setOpen(false)}>Home</NavLink>
                 <NavLink className="block" to='/products' onClick={()=> setOpen(false)}>All Products</NavLink>
 
