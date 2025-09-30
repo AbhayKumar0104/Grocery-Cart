@@ -17,8 +17,12 @@ const Navbar = () => {
 
     useEffect (() => {
         
-        if(searchQuery.lenght > 0){
+        if(searchQuery.length > 0){
             navigate("/products")
+        }
+        
+        if(searchQuery.length <= 0){
+            navigate("/")
         }
     },[searchQuery]) // whenever searchQuery changes , it will execute this function
 
@@ -79,7 +83,7 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             { open && (
-            <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
+            <div className="flex z-50 absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden">
                 <NavLink className="block" to='/' onClick={()=> setOpen(false)}>Home</NavLink>
                 <NavLink className="block" to='/products' onClick={()=> setOpen(false)}>All Products</NavLink>
 
