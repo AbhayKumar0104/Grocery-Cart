@@ -59,5 +59,3 @@ Backend API:
 - Cloudinary (image storage)
 
 ---
-
-## 📁 Project Structure
