@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
+import { useAppContext } from '../context/AppContext'
+import toast from "react-hot-toast";
 
 // Input Field Component
 const InputField = ({type, placeholder, name, handleChange, address}) =>(
@@ -17,17 +19,20 @@ const InputField = ({type, placeholder, name, handleChange, address}) =>(
 
 const AddAddress = () => {
 
+    const {axios, user, navigate} = useAppContext();
+
     const[address, setAddress] = useState({
-        firstname : '',
-        lastname  : '',
+        firstName : '',
+        lastName  : '',
         email     : '',
         street    : '',
         city      : '',
         state     : '',
         country   : '',
-        zipcode   : '',
+        pincode   : '',
         phone     : '',
     })
+    
 
 
 const handleChange = (e) =>{
@@ -40,9 +45,26 @@ const handleChange = (e) =>{
 
 
 const onSubmitHandler = async(e) =>{
-        e.priventDefault();
+        e.preventDefault();
+        try {
+            const { data } = await axios.post('/api/address/add', {address});
+
+            if(data.success){
+                toast.success(data.message);
+                navigate('/cart')
+            }else{
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
     }
 
+    useEffect(()=>{
+        if(!user){
+            navigate('/cart');
+        }
+    },[])
 
 
   return (
@@ -59,9 +81,9 @@ const onSubmitHandler = async(e) =>{
                 <form onSubmit={onSubmitHandler} action="" className="flex flex-col gap-2">
 
                     <div className='grid grid-cols-2 gap-4'>
-                        <InputField handleChange={handleChange} address={address} name='firstname' type='text' placeholder="First Name" />
+                        <InputField handleChange={handleChange} address={address} name='firstName' type='text' placeholder="First Name" />
                         
-                        <InputField handleChange={handleChange} address={address} name='lastname' type='text' placeholder="Last Name" />
+                        <InputField handleChange={handleChange} address={address} name='lastName' type='text' placeholder="Last Name" />
                         
                     </div>
                     
@@ -78,7 +100,7 @@ const onSubmitHandler = async(e) =>{
 
                     <div className='grid grid-cols-2 gap-4'>
 
-                        <InputField handleChange={handleChange} address={address} name='zipcode' type='number' placeholder="Zipcode"/>
+                        <InputField handleChange={handleChange} address={address} name='pincode' type='number' placeholder="Zipcode"/>
 
                         <InputField handleChange={handleChange} address={address} name='country' type='text' placeholder="Country" />
                         
