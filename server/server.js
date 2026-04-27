@@ -19,7 +19,7 @@ await connectDB();
 await connectCloudinary();
 
 // Allows Multiple Origins
-const allowOrigins = ['http://localhost:5173', 'https://grocery-cart-chi.vercel.app']
+const allowOrigins = ['https://grocery-cart-chi.vercel.app']
 
 // MiddleWares Configuration
 app.use(express.json());
